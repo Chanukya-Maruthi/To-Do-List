@@ -2,6 +2,7 @@ const express = require("express");
 const fs = require("fs");
 const createCsvWriter = require("csv-writer").createObjectCsvWriter;
 const csv = require("csv-parser");
+const path = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -9,11 +10,10 @@ const PORT = process.env.PORT || 3000;
 // Middleware to parse JSON data
 app.use(express.json());
 
+app.use(express.static(path.join(__dirname + "/public")));
+
+
 // Define the CSV writer
-
-
-
-
 
 let emailstor = null;
 // Endpoint for user registration
@@ -203,9 +203,7 @@ let users = [];
 
 });
 
-app.use("/", (req,res) => {
-     res.send("Server is Running . ");
-});
+
 
 
 app.listen(PORT, () => {
