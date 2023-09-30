@@ -3,8 +3,10 @@ const fs = require("fs");
 const createCsvWriter = require("csv-writer").createObjectCsvWriter;
 const csv = require("csv-parser");
 const path = require('path');
+const varia = require('dotenv');
 
 const app = express();
+varia.config();
 const PORT = process.env.PORT || 3000;
 
 // Middleware to parse JSON data
