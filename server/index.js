@@ -12,7 +12,21 @@ const PORT = process.env.PORT || 3000;
 // Middleware to parse JSON data
 app.use(express.json());
 
-// app.use(express.static(path.join(__dirname + "/public")));
+const __dirname1 = path.resolve();
+
+console.log(__dirname1);
+
+if(process.env.NODE_ENV === "development"){
+  app.use(express.static(path.join(__dirname1 + "/public")));
+  app.get('*',(req,res) => {
+        res.sendFile(path.resolve( __dirname1 + "/public/index.html" ));
+  });
+}
+else{
+    app.get("/",(req,res) =>{
+      res.send("Success"); 
+    });
+}
 
 
 // Define the CSV writer
@@ -204,11 +218,6 @@ let users = [];
 
 
 });
-
-app.use("/", (req,res) => {
-     res.send("Server is Running . ");
-});
-
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
