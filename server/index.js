@@ -7,7 +7,7 @@ const varia = require('dotenv');
 
 const app = express();
 varia.config();
-const PORT = process.env.PORT || 3000;
+const PORT =  2500 ;
 
 // Middleware to parse JSON data
 app.use(express.json());
