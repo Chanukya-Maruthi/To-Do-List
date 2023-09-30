@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 
-function List({ kindOfDay, newListItem, onAddItem }) {
+function List({ kindOfDay, newListItem, onAddItem , onAddrItem}) {
   const [newItem, setNewItem] = useState("");
+  
+  
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -12,6 +14,9 @@ function List({ kindOfDay, newListItem, onAddItem }) {
       setNewItem(""); // Clear the input field
     }
   };
+
+  
+
 
   // Include this code in your List component or wherever you want to save items
   // In your List.js component or wherever appropriate
@@ -24,7 +29,13 @@ function List({ kindOfDay, newListItem, onAddItem }) {
       <div className="box">
         {newListItem.map((item, index) => (
           <div className="item" key={index}>
-            <input type="checkbox" />
+            <input type="checkbox" 
+            onChange={(e) => {
+              if (e.target.checked) {
+                console.log(item);
+                onAddrItem(item);
+              }
+            }}/>
             <p>{item}</p>
           </div>
         ))}

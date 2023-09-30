@@ -8,6 +8,7 @@ import Logout from "./Logout"; // Import Logout component
 
 function App() {
   const [items, setItems] = useState([]);
+  const [ritems, setrItems]  = useState([]);
   const [authenticated, setAuthenticated] = useState(false); // State to track authentication
 
  
@@ -17,6 +18,7 @@ function App() {
       // Handle successful login here, you can access 'items' here
       // For example, you can set 'items' in the state or perform other actions
       setItems(items);
+      setrItems([]);
     }
     setAuthenticated(isLoggedIn);
   };
@@ -29,17 +31,17 @@ function App() {
     if(iflogout){
        console.log("Logout ")
        console.log(items)
-       onSaveItems(items);
+       onSaveItems(items,ritems);
        setAuthenticated(false);
     }
   };
 
-  const onSaveItems = (items) => {
+  const onSaveItems = (items,ritems) => {
     // Create an array of items to send to the backend
     console.log("On Save Items ");
     console.log(items);
 
-    const itemsToSend = items.map((item) => ({ item }));
+    const itemsToSend = items.filter((item) => !ritems.includes(item));
 
     console.log("Items to send ");
     console.log(itemsToSend);
@@ -73,6 +75,10 @@ function App() {
     setItems([...items, newItem]);
   };
 
+  const addrItem = (newItem) => {
+    setrItems([...ritems, newItem]);
+  };
+
   const options = {
     weekday: "long",
     day: "numeric",
@@ -86,7 +92,7 @@ function App() {
     <div className="App">
       {authenticated ? (
         <>
-          <List kindOfDay={kindOfDay} newListItem={items} onAddItem={addItem} />
+          <List kindOfDay={kindOfDay} newListItem={items} onAddItem={addItem} onAddrItem={addrItem}/>
           <Logout onLogout={handleLogout}  /> {/* Include Logout component */}
         </>
       ) : (

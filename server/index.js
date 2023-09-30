@@ -173,7 +173,7 @@ let users = [];
 
         // row[2] = JSON.stringify(itemList);  // Update the items list in CSV
 
-        const newUser = { emails : email, password : pass, items : itemList, tasksDone: [] };
+        const newUser = { emails : email, password : pass, items : items, tasksDone: [] };
         
         console.log(row[2]);
 
