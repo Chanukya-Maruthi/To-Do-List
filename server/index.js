@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 3000;
 // Middleware to parse JSON data
 app.use(express.json());
 
-app.use(express.static(path.join(__dirname + "/public")));
+// app.use(express.static(path.join(__dirname + "/public")));
 
 
 // Define the CSV writer
