@@ -203,7 +203,9 @@ let users = [];
 
 });
 
-
+app.use("/", (req,res) => {
+     res.send("Server is Running . ");
+});
 
 
 app.listen(PORT, () => {
